@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import {
   ClerkProvider,
   SignInButton,
@@ -9,6 +10,16 @@ import {
 } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import "./globals.css";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Link Shortener - Shorten Links & Track Results",
@@ -23,7 +34,9 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" className="dark">
-        <body className="antialiased font-sans">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
           <header className="bg-gray-950 border-b border-gray-800">
             <div className="container mx-auto px-4 h-14 flex items-center justify-between">
               <div className="font-bold text-lg text-white">
