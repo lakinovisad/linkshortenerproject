@@ -7,24 +7,7 @@
 
 This document serves as the master reference for AI coding agents working on this Link Shortener project. All agents must follow these coding standards and patterns to maintain consistency and quality.
 
-## ⚠️ CRITICAL: Read Documentation BEFORE Coding
-
-**ALWAYS read the relevant documentation files in the `/docs` directory BEFORE generating ANY code.**
-
-This is NON-NEGOTIABLE. Each documentation file contains specific standards, patterns, and critical rules that MUST be followed. Generating code without consulting the relevant documentation will result in:
-- Non-compliant code that violates project standards
-- Custom components when Shadcn UI equivalents exist
-- Incorrect authentication patterns
-- Database queries that don't follow established patterns
-- Type safety violations
-
-**Before writing ANY code, ask yourself: "Which docs file(s) do I need to read first?"**
-
-## Documentation Structure
-
-Detailed instructions are organized in the `/docs` directory:
-
-- [docs/shadcn-ui.md](docs/shadcn-ui.md) - **Shadcn UI component standards** (CRITICAL: Never create custom UI components when Shadcn provides them) 
+ 
 
 ## Quick Reference
 
@@ -315,7 +298,6 @@ npm run lint             # Run ESLint
 
 Before submitting code, verify:
 
-- [ ] **Read relevant documentation files in `/docs` directory before starting**
 - [ ] TypeScript compiles without errors
 - [ ] All routes require authentication where needed
 - [ ] Database queries filter by userId for user data
