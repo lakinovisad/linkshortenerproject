@@ -1,3 +1,7 @@
+---
+description: Read this before creating or modifying UI components in the project. 
+---
+
 # Shadcn UI Component Standards
 
 **Version**: 1.0  
