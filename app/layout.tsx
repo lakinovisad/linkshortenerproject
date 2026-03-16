@@ -24,7 +24,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Link Shortener - Shorten Links & Track Results",
-  description: "Create short, memorable links in seconds. Track clicks, analyze performance, and share with confidence.",
+  description:
+    "Create short, memorable links in seconds. Track clicks, analyze performance, and share with confidence.",
 };
 
 export default function RootLayout({
@@ -40,13 +41,14 @@ export default function RootLayout({
         >
           <header className="bg-gray-950 border-b border-gray-800">
             <div className="container mx-auto px-4 h-14 flex items-center justify-between">
-              <div className="font-bold text-lg text-white">
-                Link Shortener
-              </div>
+              <div className="font-bold text-lg text-white">Link Shortener</div>
               <div className="flex items-center gap-4">
                 <SignedOut>
                   <SignInButton mode="modal">
-                    <Button variant="ghost" className="text-gray-300 hover:text-white">
+                    <Button
+                      variant="ghost"
+                      className="text-gray-300 hover:text-white"
+                    >
                       Sign In
                     </Button>
                   </SignInButton>

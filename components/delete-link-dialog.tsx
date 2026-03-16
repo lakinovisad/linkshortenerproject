@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Trash2, Loader2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useState } from "react";
+import { Trash2, Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -13,9 +13,9 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
-import { deleteLink } from '@/app/(app)/dashboard/actions';
-import type { Link } from '@/db/schema';
+} from "@/components/ui/alert-dialog";
+import { deleteLink } from "@/app/(app)/dashboard/actions";
+import type { Link } from "@/db/schema";
 
 interface DeleteLinkDialogProps {
   link: Link;
@@ -23,11 +23,11 @@ interface DeleteLinkDialogProps {
 
 export function DeleteLinkDialog({ link }: DeleteLinkDialogProps) {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const handleDelete = async () => {
     setIsLoading(true);
-    setError('');
+    setError("");
 
     const result = await deleteLink(link.id);
 
@@ -49,7 +49,7 @@ export function DeleteLinkDialog({ link }: DeleteLinkDialogProps) {
         <AlertDialogHeader>
           <AlertDialogTitle>Delete Link</AlertDialogTitle>
           <AlertDialogDescription>
-            Are you sure you want to delete the link{' '}
+            Are you sure you want to delete the link{" "}
             <span className="font-mono font-semibold">/{link.shortCode}</span>?
             This action cannot be undone and all analytics data will be lost.
           </AlertDialogDescription>
@@ -75,7 +75,7 @@ export function DeleteLinkDialog({ link }: DeleteLinkDialogProps) {
                 Deleting...
               </>
             ) : (
-              'Delete'
+              "Delete"
             )}
           </AlertDialogAction>
         </AlertDialogFooter>

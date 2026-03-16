@@ -1,5 +1,5 @@
 ---
-description: Read this before creating or modifying UI components in the project. 
+description: Read this before creating or modifying UI components in the project.
 ---
 
 # Shadcn UI Component Standards
@@ -23,12 +23,14 @@ This project uses **Shadcn UI (New York variant)** as the exclusive UI component
 Shadcn UI components are located in `components/ui/`. Common components include:
 
 ### Layout & Structure
+
 - `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`
 - `Separator`
 - `Sheet`, `SheetTrigger`, `SheetContent`
 - `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent`
 
 ### Forms & Inputs
+
 - `Button` (variants: default, destructive, outline, secondary, ghost, link)
 - `Input`
 - `Textarea`
@@ -40,6 +42,7 @@ Shadcn UI components are located in `components/ui/`. Common components include:
 - `Switch`
 
 ### Feedback & Overlays
+
 - `Dialog`, `DialogTrigger`, `DialogContent`, `DialogHeader`, `DialogTitle`, `DialogDescription`
 - `AlertDialog` (for confirmations)
 - `Toast` / `Toaster` (for notifications)
@@ -48,11 +51,13 @@ Shadcn UI components are located in `components/ui/`. Common components include:
 - `Skeleton` (loading states)
 
 ### Data Display
+
 - `Table`, `TableHeader`, `TableBody`, `TableRow`, `TableCell`
 - `Avatar`, `AvatarImage`, `AvatarFallback`
 - `Tooltip`, `TooltipTrigger`, `TooltipContent`
 
 ### Navigation
+
 - `DropdownMenu` (for user menus, actions)
 - `NavigationMenu`
 - `Command` (command palette)
@@ -66,6 +71,7 @@ npx shadcn@latest add <component-name>
 ```
 
 Example:
+
 ```bash
 npx shadcn@latest add button
 npx shadcn@latest add card
@@ -104,8 +110,8 @@ import { Button } from '@/components/ui/button';
 
 export function CustomButton({ className, ...props }: ButtonProps) {
   return (
-    <Button 
-      className={cn("w-full", className)} 
+    <Button
+      className={cn("w-full", className)}
       {...props}
     />
   );
@@ -231,6 +237,7 @@ export function LinksTable({ links }: { links: Link[] }) {
 ## Common Variants
 
 ### Button Variants
+
 ```typescript
 <Button variant="default">Default</Button>
 <Button variant="destructive">Delete</Button>
@@ -247,6 +254,7 @@ export function LinksTable({ links }: { links: Link[] }) {
 ```
 
 ### Badge Variants
+
 ```typescript
 <Badge variant="default">Default</Badge>
 <Badge variant="secondary">Secondary</Badge>

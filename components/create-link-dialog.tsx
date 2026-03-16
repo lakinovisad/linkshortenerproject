@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Plus, Loader2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useState } from "react";
+import { Plus, Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -10,22 +10,22 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { createLink } from '@/app/(app)/dashboard/actions';
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { createLink } from "@/app/(app)/dashboard/actions";
 
 export function CreateLinkDialog() {
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [originalUrl, setOriginalUrl] = useState('');
-  const [shortCode, setShortCode] = useState('');
+  const [error, setError] = useState("");
+  const [originalUrl, setOriginalUrl] = useState("");
+  const [shortCode, setShortCode] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    setError('');
+    setError("");
 
     const result = await createLink({ originalUrl, shortCode });
 
@@ -35,8 +35,8 @@ export function CreateLinkDialog() {
     } else {
       // Success - close dialog and reset form
       setOpen(false);
-      setOriginalUrl('');
-      setShortCode('');
+      setOriginalUrl("");
+      setShortCode("");
       setIsLoading(false);
     }
   };
@@ -107,7 +107,7 @@ export function CreateLinkDialog() {
                   Creating...
                 </>
               ) : (
-                'Create Link'
+                "Create Link"
               )}
             </Button>
           </div>

@@ -1,7 +1,7 @@
-import { db } from '@/db';
-import { links } from '@/db/schema';
-import { eq, desc, sql } from 'drizzle-orm';
-import type { NewLink } from '@/db/schema';
+import { db } from "@/db";
+import { links } from "@/db/schema";
+import { eq, desc, sql } from "drizzle-orm";
+import type { NewLink } from "@/db/schema";
 
 /**
  * Fetches all links for a specific user
@@ -40,11 +40,7 @@ export async function getLinkByShortCode(shortCode: string) {
  * @returns The link if found and belongs to user, undefined otherwise
  */
 export async function getUserLinkById(id: string, userId: string) {
-  const link = await db
-    .select()
-    .from(links)
-    .where(eq(links.id, id))
-    .limit(1);
+  const link = await db.select().from(links).where(eq(links.id, id)).limit(1);
 
   if (link[0]?.userId !== userId) {
     return undefined;
@@ -59,10 +55,7 @@ export async function getUserLinkById(id: string, userId: string) {
  * @returns The newly created link
  */
 export async function createLinkInDb(data: NewLink) {
-  const [newLink] = await db
-    .insert(links)
-    .values(data)
-    .returning();
+  const [newLink] = await db.insert(links).values(data).returning();
 
   return newLink;
 }
@@ -77,7 +70,7 @@ export async function createLinkInDb(data: NewLink) {
 export async function updateLinkInDb(
   id: number,
   userId: string,
-  data: { originalUrl?: string; shortCode?: string }
+  data: { originalUrl?: string; shortCode?: string },
 ) {
   // First verify the link belongs to the user
   const existingLink = await db
@@ -130,9 +123,9 @@ export async function deleteLinkFromDb(id: number, userId: string) {
 export async function incrementLinkClicks(shortCode: string) {
   const [updatedLink] = await db
     .update(links)
-    .set({ 
+    .set({
       clicks: sql`${links.clicks} + 1`,
-      updatedAt: new Date() 
+      updatedAt: new Date(),
     })
     .where(eq(links.shortCode, shortCode))
     .returning();

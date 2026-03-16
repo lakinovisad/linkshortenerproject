@@ -7,8 +7,6 @@
 
 This document serves as the master reference for AI coding agents working on this Link Shortener project. All agents must follow these coding standards and patterns to maintain consistency and quality.
 
- 
-
 ## Quick Reference
 
 ### Tech Stack Summary
@@ -69,22 +67,22 @@ docs/                 # Documentation
 
 ```typescript
 // 1. React/Next.js
-import { useState } from 'react';
-import Link from 'next/link';
+import { useState } from "react";
+import Link from "next/link";
 
 // 2. Third-party libraries
-import { clsx } from 'clsx';
+import { clsx } from "clsx";
 
 // 3. Internal modules (absolute imports)
-import { db } from '@/db';
-import { Button } from '@/components/ui/button';
-import { createLink } from '@/app/actions/links';
+import { db } from "@/db";
+import { Button } from "@/components/ui/button";
+import { createLink } from "@/app/actions/links";
 
 // 4. Relative imports
-import { formatDate } from './utils';
+import { formatDate } from "./utils";
 
 // 5. Types
-import type { Link } from '@/db/schema';
+import type { Link } from "@/db/schema";
 ```
 
 ### Component Pattern
@@ -124,24 +122,24 @@ export function Component({ title, onClick, children }: ComponentProps) {
 ### Database Query Pattern
 
 ```typescript
-import { db } from '@/db';
-import { links } from '@/db/schema';
-import { eq, and, desc } from 'drizzle-orm';
-import { auth } from '@clerk/nextjs/server';
+import { db } from "@/db";
+import { links } from "@/db/schema";
+import { eq, and, desc } from "drizzle-orm";
+import { auth } from "@clerk/nextjs/server";
 
 export async function getUserLinks() {
   const { userId } = await auth();
-  
+
   if (!userId) {
-    throw new Error('Unauthorized');
+    throw new Error("Unauthorized");
   }
-  
+
   const userLinks = await db
     .select()
     .from(links)
     .where(eq(links.userId, userId))
     .orderBy(desc(links.createdAt));
-  
+
   return userLinks;
 }
 ```
@@ -149,13 +147,13 @@ export async function getUserLinks() {
 ### Server Action Pattern
 
 ```typescript
-'use server';
+"use server";
 
-import { db } from '@/db';
-import { links } from '@/db/schema';
-import { auth } from '@clerk/nextjs/server';
-import { revalidatePath } from 'next/cache';
-import { z } from 'zod';
+import { db } from "@/db";
+import { links } from "@/db/schema";
+import { auth } from "@clerk/nextjs/server";
+import { revalidatePath } from "next/cache";
+import { z } from "zod";
 
 const createLinkSchema = z.object({
   url: z.string().url(),
@@ -164,21 +162,21 @@ const createLinkSchema = z.object({
 
 export async function createLink(formData: FormData) {
   const { userId } = await auth();
-  
+
   if (!userId) {
-    return { error: 'Unauthorized' };
+    return { error: "Unauthorized" };
   }
-  
+
   // Validate input
   const parsed = createLinkSchema.safeParse({
-    url: formData.get('url'),
-    shortCode: formData.get('shortCode'),
+    url: formData.get("url"),
+    shortCode: formData.get("shortCode"),
   });
-  
+
   if (!parsed.success) {
-    return { error: 'Invalid input' };
+    return { error: "Invalid input" };
   }
-  
+
   // Database operation
   try {
     const [newLink] = await db
@@ -188,12 +186,12 @@ export async function createLink(formData: FormData) {
         userId,
       })
       .returning();
-    
-    revalidatePath('/dashboard');
+
+    revalidatePath("/dashboard");
     return { success: true, link: newLink };
   } catch (error) {
-    console.error('Create link error:', error);
-    return { error: 'Failed to create link' };
+    console.error("Create link error:", error);
+    return { error: "Failed to create link" };
   }
 }
 ```
@@ -311,6 +309,7 @@ Before submitting code, verify:
 ## Getting Help
 
 For detailed information on specific topics:
+
 - Project structure → [docs/01-project-overview.md](docs/01-project-overview.md)
 - TypeScript patterns → [docs/02-typescript-standards.md](docs/02-typescript-standards.md)
 - Next.js usage → [docs/03-nextjs-patterns.md](docs/03-nextjs-patterns.md)

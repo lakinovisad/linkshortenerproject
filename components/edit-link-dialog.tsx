@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { Pencil, Loader2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useState, useEffect } from "react";
+import { Pencil, Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -10,11 +10,11 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { updateLink } from '@/app/(app)/dashboard/actions';
-import type { Link } from '@/db/schema';
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { updateLink } from "@/app/(app)/dashboard/actions";
+import type { Link } from "@/db/schema";
 
 interface EditLinkDialogProps {
   link: Link;
@@ -23,7 +23,7 @@ interface EditLinkDialogProps {
 export function EditLinkDialog({ link }: EditLinkDialogProps) {
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [originalUrl, setOriginalUrl] = useState(link.originalUrl);
   const [shortCode, setShortCode] = useState(link.shortCode);
 
@@ -32,14 +32,14 @@ export function EditLinkDialog({ link }: EditLinkDialogProps) {
     if (open) {
       setOriginalUrl(link.originalUrl);
       setShortCode(link.shortCode);
-      setError('');
+      setError("");
     }
   }, [open, link]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    setError('');
+    setError("");
 
     const result = await updateLink({
       id: link.id,
@@ -122,7 +122,7 @@ export function EditLinkDialog({ link }: EditLinkDialogProps) {
                   Saving...
                 </>
               ) : (
-                'Save Changes'
+                "Save Changes"
               )}
             </Button>
           </div>
